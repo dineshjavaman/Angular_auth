@@ -1,0 +1,32 @@
+<div class="login-box">
+    <div class="login-snip"> 
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+        <label for="tab-1" class="tab">Login</label> 
+        <input id="tab-2" type="radio" name="tab" class="sign-up">
+        <label for="tab-2" class="tab" routerLink="/register">Sign Up</label>
+        <div class="login-space">
+            <div class="login">
+                <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+                    <div class="group"> 
+                        <label for="user" class="label form-label">Username</label> 
+                        <input id="user" type="email" class="input" placeholder="Enter your username" formControlName="username"> 
+                        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="message">enter Username</div>
+                    </div>
+                    <div class="group"> 
+                        <label for="pass" class="label form-label">Password</label> 
+                        <input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password" formControlName="password"> 
+                        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="message">enter Password</div>
+                    </div>
+                    
+                    <div class="group"> 
+                        <button type="submit" class="button" [disabled]="loginForm.invalid">Sign In</button> 
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot">                      
+                        <a href="/forgot-password">Forgot Password?</a> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

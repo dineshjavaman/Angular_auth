@@ -1,0 +1,50 @@
+<div class="login-box">
+    <div class="login-snip"> 
+        <input id="tab-1" type="radio" name="tab" class="sign-in">
+        <label for="tab-1" class="tab"><a routerLink="/login">Login</a></label> 
+        <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
+        <label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-space">
+            <div class="sign-up-form">
+                <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+                    <div class="group"> 
+                        <label for="user" class="label form-label">Username</label> 
+                        <input id="user" type="text" class="input" placeholder="Create your Username" formControlName="username"> 
+                    </div>
+                    <div class="group"> 
+                        <label for="pass" class="label form-label">Password</label> 
+                        <input id="pass" type="password" class="input" data-type="password" placeholder="Create your password" formControlName="password"> 
+                    </div>
+                    <div class="group"> 
+                        <label for="repeat-pass" class="label form-label">Confirm Password</label> 
+                        <input id="repeat-pass" type="password" class="input" data-type="password" placeholder="confirm password" formControlName="repeatPassword"> 
+                        <div *ngIf="signUpForm.hasError('passwordMismatch')" class="message">Passwords do not match</div>
+                    </div>
+                    
+                    <div class="group"> 
+                        <label for="email" class="label form-label">Email Address</label> 
+                        <input id="email" type="text" class="input" placeholder="Enter your email address" formControlName="email"> 
+                        <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="message"> enter valid email address</div>
+                    </div>
+                    <div class="group select-wrapper"> 
+                        <label for="gender" class="label form-label" >Gender</label> 
+                        <select id="gender" class="input slect-lable" formControlName="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input id="otherGender" type="text" class="input" placeholder="Enter your gender" formControlName="otherGender" *ngIf="isOtherSelected()">
+                    </div>
+                    
+                    <div class="group"> 
+                        <button type="submit" class="button" [disabled]="signUpForm.invalid">Sign Up</button> 
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot"> 
+                        <label for="tab-1"><a routerLink="/login">Already Member?</a></label> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
